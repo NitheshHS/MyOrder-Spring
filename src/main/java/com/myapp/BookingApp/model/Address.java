@@ -1,11 +1,13 @@
 package com.myapp.BookingApp.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
 @Table(name = "address")
 @Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,5 +1,6 @@
 package com.myapp.BookingApp.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "my_order")
 @Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class MyOrder {
 
     @Id

@@ -1,5 +1,8 @@
 package com.myapp.BookingApp.service;
 
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.myapp.BookingApp.dto.AddressDTO;
 import com.myapp.BookingApp.dto.MyOrderDTO;
 import com.myapp.BookingApp.model.Address;
@@ -35,12 +38,16 @@ public class OrderService {
         myOrderDTO.setUpdatedDate(order.getUpdatedDate());
 
         Address address = order.getBillingAddress();
-        AddressDTO addressDTO=new AddressDTO();
-        addressDTO.setCity(address.getCity());
-        addressDTO.setState(address.getState());
-        addressDTO.setCountry(address.getCountry());
-        addressDTO.setZipcode(address.getZipcode());
-        myOrderDTO.setBillingAddress(addressDTO);
+        if(address != null){
+            AddressDTO addressDTO=new AddressDTO();
+            addressDTO.setCity(address.getCity());
+            addressDTO.setState(address.getState());
+            addressDTO.setCountry(address.getCountry());
+            addressDTO.setZipcode(address.getZipcode());
+            myOrderDTO.setBillingAddress(addressDTO);
+        }else{
+            myOrderDTO.setBillingAddress(null);
+        }
         return myOrderDTO;
     }
 
@@ -79,5 +86,10 @@ public class OrderService {
         newOrder.setBillingAddress(newAddress);
 
         return convertToOrderDTO(orderRepository.save(newOrder));
+    }
+
+    public <T, D> T convertToDTO(D model, T dto){
+        ObjectMapper mapper=new ObjectMapper();
+        mapper.readValue()
     }
 }

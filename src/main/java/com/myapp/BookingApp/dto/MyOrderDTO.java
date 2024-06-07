@@ -1,5 +1,6 @@
 package com.myapp.BookingApp.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.myapp.BookingApp.model.Address;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,7 +13,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class MyOrderDTO {
     private String orderTracker;
     private String status;
