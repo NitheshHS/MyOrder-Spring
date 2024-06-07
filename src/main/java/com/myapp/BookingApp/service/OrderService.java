@@ -88,8 +88,5 @@ public class OrderService {
         return convertToOrderDTO(orderRepository.save(newOrder));
     }
 
-    public <T, D> T convertToDTO(D model, T dto){
-        ObjectMapper mapper=new ObjectMapper();
-        mapper.readValue()
-    }
+
 }
